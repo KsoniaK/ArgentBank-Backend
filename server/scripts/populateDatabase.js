@@ -18,9 +18,23 @@ const users = [
   }
 ]
 
-users.forEach(user => {
-  axios
-    .post(signupApi, user)
-    .then(response => console.log(response))
-    .catch(error => console.log(error))
-})
+
+async function populateUsers() {
+  for (const user of users) {
+    try {
+      const response = await axios.post(signupApi, user);
+      console.log("Utilisateur créé :", response.data.body.email);
+    } catch (error) {
+      if (error.response) {
+        console.error(
+          "Erreur API :",
+          error.response.data.message || error.response.status
+        );
+      } else {
+        console.error("Erreur serveur :", error.message);
+      }
+    }
+  }
+}
+
+populateUsers();

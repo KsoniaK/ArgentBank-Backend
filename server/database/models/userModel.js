@@ -6,7 +6,15 @@ const userSchema = new mongoose.Schema(
     password: String,
     firstName: String,
     lastName: String,
-    userName: String
+    userName: String,
+    accounts : [ // Ajout infos compte
+      {
+        number: String,
+        type: String,
+        title: String,
+        balance: Number,
+      },
+    ],
   },
   {
     timestamps: true,

@@ -77,12 +77,17 @@ module.exports.updateUserProfile = async serviceData => {
   try {
     const jwtToken = serviceData.headers.authorization.split('Bearer')[1].trim()
     const decodedJwtToken = jwt.decode(jwtToken)
+
+    const { firstName, lastName, userName } = serviceData.body
+
     const user = await User.findOneAndUpdate(
       { _id: decodedJwtToken.id },
       {
-        userName: serviceData.body.userName
+        firstName,
+        lastName,
+        userName,
       },
-      { new: true }
+      { new: true } // retourne le document mis à jour
     )
 
     if (!user) {
@@ -95,3 +100,4 @@ module.exports.updateUserProfile = async serviceData => {
     throw new Error(error)
   }
 }
+
