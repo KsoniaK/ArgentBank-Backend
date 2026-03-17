@@ -1,3 +1,8 @@
+// créer automatiquement quelques utilisateurs dans la base de données pour tester l’application.
+// Ce script est un outil de peuplement de la base de données.
+// Il envoie des requêtes POST /signup pour créer automatiquement plusieurs utilisateurs, ce qui facilite le développement et les tests.
+// Il utilise axios pour communiquer avec l’API et gère les erreurs pour afficher des messages clairs en cas de problème.
+
 const axios = require('axios')
 const signupApi = 'http://localhost:3001/api/v1/user/signup'
 

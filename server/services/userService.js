@@ -1,3 +1,6 @@
+// fait le lien entre le controller et la base de données.
+// Il contient toute la logique pour créer un utilisateur, le connecter, récupérer et mettre à jour son profil.
+
 const User = require('../database/models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -10,6 +13,7 @@ module.exports.createUser = async serviceData => {
       throw new Error('Email already exists')
     }
 
+    // Hash le mot de passe
     const hashPassword = await bcrypt.hash(serviceData.password, 12)
 
     const newUser = new User({
@@ -22,6 +26,7 @@ module.exports.createUser = async serviceData => {
   console.log(newUser)
     let result = await newUser.save()
 
+    // Résultat : on a un utilisateur créé avec mot de passe sécurisé.
     return result
   } catch (error) {
     console.error('Error in userService.js', error)

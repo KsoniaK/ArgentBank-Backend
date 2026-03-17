@@ -1,3 +1,5 @@
+// point d’entrée pour tout le backend.
+
 const express = require('express')
 const dotEnv = require('dotenv')
 const cors = require('cors')
@@ -21,9 +23,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Handle custom routes
+// Monte le routeur utilisateur sur /api/v1/user
 app.use('/api/v1/user', require('./routes/userRoutes'))
-// app.use('/api/v1/transactions', require('./routes/transactionRoutes'));
 
 // API Documentation
 if (process.env.NODE_ENV !== 'production') {

@@ -1,5 +1,12 @@
+// Il sert à définir la structure des données User dans MongoDB.
+
+// On importe Mongoose pour pouvoir :
+  // - créer un schéma,
+  // - créer un modèle,
+  // - interagir avec MongoDB.
 const mongoose = require('mongoose')
 
+// Ici, on crée un nouveau schéma = c’est le plan de l’objet User en base.
 const userSchema = new mongoose.Schema(
   {
     email: String,

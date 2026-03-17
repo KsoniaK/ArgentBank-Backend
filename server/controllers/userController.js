@@ -1,10 +1,16 @@
+// Ce fichier permet :
+  // - de recevoir la requête HTTP
+  // - d'appeler la logique métier dans userService
+  // - puis de renvoyer une réponse au client
+
 const userService = require('../services/userService')
 
 module.exports.createUser = async (req, res) => {
   let response = {}
 
   try {
-    const responseFromService = await userService.createUser(req.body)
+    // req = la requête envoyée par le client
+    const responseFromService = await userService.createUser(req.body) // Ici, on envoie req.body au service
     response.status = 200
     response.message = 'User successfully created'
     response.body = responseFromService
@@ -13,7 +19,10 @@ module.exports.createUser = async (req, res) => {
     response.status = 400
     response.message = error.message
   }
-
+  // res = la réponse qu’on va renvoyer
+    // Express renvoie au client une réponse HTTP avec : 
+      // - le code HTTP (200 ou 400)
+      // - l’objet response
   return res.status(response.status).send(response)
 }
 
